@@ -115,7 +115,7 @@ def benchmark_hps_sel(
         lam_space = log_linspace(0.1, 10, 10)
 
     nys_seed = int(rng.randint(0, 100))
-    z_nystrom = NystromSampler(
+    z_nystrom = UniformNystromSampler(
         jax.random.PRNGKey(nys_seed), mn=n_nystrom) if n_nystrom >= 0 else None
 
     ((Ztr, Xtr, Ytr), (Zte, Xte, Yte)), true_f = dtuple
@@ -286,7 +286,7 @@ def visualize_hps_exp(lcs, mode='qb'):
     ks = lcs['stats_gmmv']
     Dtrain = lcs['Dtrain_ref']
     if Dtrain[1].shape[0] > 1000:
-        z_nystrom = NystromSampler(jax.random.PRNGKey(23))
+        z_nystrom = UniformNystromSampler(jax.random.PRNGKey(23))
     else:
         z_nystrom = None
     krr_pred_fn = krr(Dtrain[1], Dtrain[2], lcs['Kx'], lcs['lam'], nystrom=z_nystrom)

@@ -7,7 +7,7 @@ import jax
 from jax import numpy as np
 
 
-class NystromSampler(object):
+class UniformNystromSampler(object):
     """
     the sampler will not modify its state 
     """
