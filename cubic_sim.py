@@ -38,7 +38,7 @@ parser.add_argument('-matern_kz', default=5, type=int, help='order of Matern ker
 parser.add_argument('-poly_k', default=3, type=int, help='order of the polynomial kernels')
 parser.add_argument('-n_nystrom', default=-1, type=int, help='Nystrom approximation for k_z. \
                     -1 to disable. Note it may be unstable with finite-rank kernels.')
-parser.add_argument('-jitter', default=1e-9, type=float, help='jitter in the Cholesky \
+parser.add_argument('-jitter', default=1e-8, type=float, help='jitter in the Cholesky \
                     factorization for Nystrom. should be < 1/n')
 # data
 parser.add_argument('-data', default='dgmm', type=str)

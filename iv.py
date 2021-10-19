@@ -85,7 +85,7 @@ class LRLinearMap(object):
     T = property(T_)
 
 
-def get_nystrom_L(z_nystrom_fn, Z1, Kz, nu, Z2=None, cg=False, jitter=1e-12):
+def get_nystrom_L(z_nystrom_fn, Z1, Kz, nu, Z2=None, cg=False, jitter=1e-8):
     """
     return the evaluation on Z2 of the Nystrom predictor fitted on (Z1m, Z1, f(Z1)=?), which is
         ? |-> K(Z2, Z1m) @ (nu Kmm + Kmn @ Knm)^{-1} @ K(Z1m, Z1) @ ?
@@ -107,7 +107,7 @@ class KIVPredictor(object):
     Implements kernelized [Quasi-Bayesian] dual IV.
     """
 
-    def __init__(self, Z, X, Y, Kz, Kx, lam, nu, z_nystrom=None, cg=False, jitter=1e-12):
+    def __init__(self, Z, X, Y, Kz, Kx, lam, nu, z_nystrom=None, cg=False, jitter=1e-8):
         n = Z.shape[0]
         vars(self).update(locals())  # save data and args
         if z_nystrom is None:
@@ -196,7 +196,7 @@ kiv = KIVPredictor
 
 
 def kiv_stage1_criteria(zx_tuples, nu, Kz, Kx, z_nystrom=None, cache_matrices=None, cg=False,
-                        jitter=1e-9):
+                        jitter=1e-8):
     (Z1, X1), (Z2, X2) = zx_tuples
     if z_nystrom is None:
         if cache_matrices is None:
@@ -214,7 +214,7 @@ def kiv_stage1_criteria(zx_tuples, nu, Kz, Kx, z_nystrom=None, cache_matrices=No
 
 def kiv_hps_selection(
     dtrain, dheldout, Kz, Kx, nu_space, lam_space=None, s2_criterion='orig',
-    return_all_stats=False, z_nystrom=None, jitter=1e-12):
+    return_all_stats=False, z_nystrom=None, jitter=1e-8):
     r"""
     Hyperparameter selection for KIV. Selection of nu follows Algorithm 2 in the KIV paper.
     For lambda, we implement
@@ -277,7 +277,7 @@ def cg_solve(A, b):
     return jax.scipy.sparse.linalg.cg(A, b)[0]
 
 
-def krr(x, y, k, lam, cg=False, nystrom=None, jitter=1e-9):
+def krr(x, y, k, lam, cg=False, nystrom=None, jitter=1e-8):
     if nystrom is None:
         kx = k(x, x)
         solve = np.linalg.solve if not cg else cg_solve
@@ -314,7 +314,7 @@ class BootstrapPredictor(object):
 
 
 def bootstrap(
-    Ztr, Xtr, Ytr, Kz, Kx, lam, nu, ratio=0.95, n_repeats=20, z_nystrom=None, jitter=1e-12, rng=None):
+    Ztr, Xtr, Ytr, Kz, Kx, lam, nu, ratio=0.95, n_repeats=20, z_nystrom=None, jitter=1e-8, rng=None):
     if rng is None:
         rng = onp.random.RandomState(23)
     pfns = []
