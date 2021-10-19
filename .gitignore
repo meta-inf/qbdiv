@@ -1,0 +1,6 @@
+__pycache__
+cachedir*
+.*
+!.gitignore
+*.ipynb
+bin/
