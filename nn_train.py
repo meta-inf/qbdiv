@@ -617,7 +617,7 @@ def main(args):
           f'(y_sd: {y_sd}, log unnormalized: {np.log(y_sd**2 * cf_nmse) / np.log(10):.3f})')
     plt.figure(figsize=(2.8, 2), facecolor='w')
     if args.data in ['hllt', 'div', 'hllt-im', 'div-im']:
-        from demand_data import one_hot, get_images
+        from data.demand_data import one_hot, get_images
         emo_fea = emo_fea_latent = np.ones((100, 1)) * 4
         if args.data == 'div':
             emo_fea = one_hot((emo_fea - 1).astype('i'), 7)

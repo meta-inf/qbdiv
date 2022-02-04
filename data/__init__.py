@@ -139,7 +139,7 @@ def gen_demand_data(N, cor, seed, hllt=True, use_im=False, add_endo=False):
     x = [time; emo; price]
     when add_endo is true, z will be [time; emo; z]
     """
-    from demand_data import one_hot, encode_image
+    from .demand_data import one_hot, encode_image
     Ztr, Xtr, Ytr, true_fn, ysd = (hllt_gen_data_ if hllt else div_gen_data_)(
         N, cor, seed, use_im=use_im)
     if add_endo:  # X = [time; emo; price]
@@ -172,7 +172,7 @@ def hllt_gen_data_(ssz, cor, seed, use_im):
     This corresponds to the "HLLT design" in the KIV (and DualIV) experiments, which removes
     the normalization on both Y and price.
     """
-    from demand_data import demand, one_hot, emocoef
+    from .demand_data import demand, one_hot, emocoef
     X, Z, Price, Y, g = demand(ssz, seed, ypcor=cor, use_hllt=True, use_images=use_im)
     # concatenate context and treatment
     if not use_im:

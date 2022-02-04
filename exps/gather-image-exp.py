@@ -1,5 +1,3 @@
-# usage: cd exp_dir; ls -d . | python im-ag.py
-
 import os, sys, json, shutil
 import numpy as np
 
@@ -22,14 +20,15 @@ for d in fls:
         seed = json.load(fin)['seed']
     val_loss = float(ln[0].split(' ')[10])
     cf_mse = float(ln[1].split(' ')[3][:6])
-    cf_cvg = float(ln[1].split(' ')[7])
+    cf_cvg = float(ln[1].split(' ')[7][:-1])
+    ciw = float(ln[1].split(' ')[11][:-1])
     if seed not in pts:
         pts[seed] = []
-    pts[seed].append((val_loss, cf_mse, cf_cvg, d))
+    pts[seed].append((val_loss, cf_mse, cf_cvg, ciw, d))
 
 for seed in pts:
-    (val_loss, cf_mse, cf_cvg, d) = min(pts[seed])
-    print(seed, val_loss, cf_mse, cf_cvg, d)
+    (val_loss, cf_mse, cf_cvg, ciw, d) = min(pts[seed])
+    print(seed, val_loss, cf_mse, cf_cvg, ciw, d)
     shutil.copyfile(os.path.join(d, 'vis.svg'), f'/tmp/opt_{seed}.svg')
 
 

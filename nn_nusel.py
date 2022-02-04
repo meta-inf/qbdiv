@@ -8,8 +8,10 @@ import tqdm
 
 import data
 from rf import MLP, ModifiedRPModel
-from main import get_optim_spec, build_model
+from nn_train import get_optim_spec, build_model
 from utils import *
+
+import exputils
 
 
 parser = exputils.parser('qbdiv-val')

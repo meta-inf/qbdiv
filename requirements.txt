@@ -3,14 +3,13 @@ backcall==0.2.0
 certifi==2020.12.5
 cycler==0.10.0
 decorator==5.0.4
-# -e git+https://github.com/meta-inf/experiments.git@4014c70b0e4cef05ca9228184b4681001b465faa#egg=experiments
 flatbuffers==1.12
 flax==0.3.3
 ipykernel==5.5.3
 ipython==7.22.0
 ipython-genutils==0.2.0
 jax==0.2.12
-# jaxlib @ http://ml.cs.tsinghua.edu.cn/~ziyu/jax/jaxlib-0.1.64+cuda102-cp38-none-manylinux2010_x86_64.whl
+jaxlib @ http://ml.cs.tsinghua.edu.cn/~ziyu/jax/jaxlib-0.1.64+cuda102-cp38-none-manylinux2010_x86_64.whl
 jedi==0.18.0
 joblib==1.0.1
 jupyter-client==6.1.12
