@@ -9,7 +9,7 @@ ipykernel==5.5.3
 ipython==7.22.0
 ipython-genutils==0.2.0
 jax==0.2.12
-jaxlib @ http://ml.cs.tsinghua.edu.cn/~ziyu/jax/jaxlib-0.1.64+cuda102-cp38-none-manylinux2010_x86_64.whl
+jaxlib @ https://storage.googleapis.com/jax-releases/cuda102/jaxlib-0.1.64+cuda102-cp38-none-manylinux2010_x86_64.whl
 jedi==0.18.0
 joblib==1.0.1
 jupyter-client==6.1.12
